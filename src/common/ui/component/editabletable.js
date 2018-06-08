@@ -172,7 +172,6 @@ export default class EditableTable extends React.Component {
 
     componentDidUpdate(preProp, preState) {
         if (preProp.dataSource != this.props.dataSource) {
-            console.log("componentDidUpdate");
             this.refreshData();
         }
     }

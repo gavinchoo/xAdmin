@@ -74,6 +74,37 @@ const Columns = [
             ]
         },
     },
+    {
+        title: '分录名称',
+        dataIndex: 'entityDataIndex',
+        key: 'entityDataIndex',
+        type: String,
+        required: true,
+    },
+    {
+        title: '分录别名',
+        dataIndex: 'entityTitle',
+        key: 'entityTitle',
+        type: String,
+        required: false,
+    },
+    {
+        title: '分录字段',
+        dataIndex: 'entityColumns',
+        key: 'entityColumns',
+        type: Array,
+        required: false,
+        f7: {
+            "source": "entity",
+            "columns": [
+                {"title": "字段名称", "dataIndex": "dataIndex", "key": "dataIndex", "required": true, "width": 60},
+                {"title": "字段别名", "dataIndex": "title", "key": "title", "required": true, "width": 60},
+                {"title": "字段类型", "dataIndex": "type", "key": "type", type: String, required: true, "width": 60},
+                {"title": "是否必录", "dataIndex": "required", "key": "required", "required": false, "width": 60},
+                {"title": "是否显示列表", "dataIndex": "listshow", "key": "listshow", "required": false, "width": 60},
+            ]
+        },
+    },
 ]
 
 const Columns1 = [
@@ -94,7 +125,6 @@ const Columns1 = [
                 {value: "other_busi", title: "其他业务单元"},
                 {value: "category", title: "固定下拉列表"},
                 {value: "attachment", title: "附件"},
-                {value: "entity", title: "分录"},
             ]
         }
     },

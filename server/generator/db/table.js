@@ -4,6 +4,11 @@ var Schema = mongoose.Schema
 var CategorySchema = require('./category')
 var GroupSchema = require('./group')
 
+var EntitySchema = new Schema({
+    title: {type: String, required: true},
+    dataIndex: {type: String, required: true},
+})
+
 var SourceTypeSchema = new Schema({
     value: {type: String, required: true},
     title: {type: String, required: true},
@@ -32,6 +37,10 @@ var TableSchema = new Schema({
     title: {type: String, required: true},
     dataIndex: {type: String, required: true},
     columns: {type: [ColumnsSchema]},
+    entity: {type: EntitySchema},
+    entityTitle: {type: String, required: false},
+    entityDataIndex: {type: String, required: false},
+    entityColumns: {type: [ColumnsSchema]},
 })
 
 module.exports = TableSchema

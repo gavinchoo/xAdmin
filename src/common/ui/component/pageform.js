@@ -29,7 +29,6 @@ const source = [
     {value: "other_busi", title: "其他业务单元"},
     {value: "category", title: "固定下拉列表"},
     {value: "attachment", title: "附件"},
-    {value: "entity", title: "分录"},
 ]
 
 class PageForm extends React.Component {
