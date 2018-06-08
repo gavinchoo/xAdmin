@@ -1,0 +1,7 @@
+export const Columns = [
+{@Columns}
+]
+
+export const Uri = {
+    {@Uri}
+}

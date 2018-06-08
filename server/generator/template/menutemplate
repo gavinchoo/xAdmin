@@ -1,0 +1,9 @@
+@import
+
+const route = {
+@route
+}
+
+module.exports = {
+    route: route
+}

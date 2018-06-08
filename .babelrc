@@ -1,0 +1,26 @@
+{
+  "presets": [
+    "es2015",
+    "react",
+    "react-native",
+    "stage-0"
+  ],
+  "plugins": [
+    [
+      "import",
+      [
+        {
+
+          "libraryName": "antd",
+          "style": true,
+          "libraryDirectory": "es"
+        },
+        {
+          "libraryName": "antd-mobile",
+          "style": "css"
+        }
+      ]
+    ]
+  ],
+  "sourceMaps": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "mall-jzb Apidoc",
+  "version": "1.0.0",
+  "description": "统一返回格式：\n Success-Response\n { code:1,message:'success', data:{total:100, result:[]}} \n\n Error-Response \n {code:0, message:'user not found',}",
+  "title": "Custom apiDoc browser title",
+  "url" : "http://localhost:8000/api/v1",
+  "sampleUrl": "http://localhost:8000/api/v1",
+  "template": {
+    "withCompare": true,
+    "withGenerator": true
+  }
+}

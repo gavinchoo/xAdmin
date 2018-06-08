@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"/>
+    <title>Title</title>
+    <script src="https://as.alipayobjects.com/g/component/fastclick/1.0.6/fastclick.js"></script>
+    <script>
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function () {
+                FastClick.attach(document.body);
+            }, false);
+        }
+        if (!window.Promise) {
+            document.writeln('<script src="https://as.alipayobjects.com/g/component/intl/1.0.1/??Intl.js,locale-data/jsonp/en.js,locale-data/jsonp/zh.js">' + '<' + '/script>');
+        }
+    </script>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/javascript" src="<%= htmlWebpackPlugin.options.bundleName %>"></script>
+
+<!-- history@3.2.1 -->
+<script src="https://os.alipayobjects.com/rmsportal/VnttsLkEQmyLDBBluBQq.js"></script>
+<!-- babel-polyfill@6.20.0 -->
+<script src="https://os.alipayobjects.com/rmsportal/wzWaWInUcXErDyTwvySY.js"></script>
+<script src="https://gw.alipayobjects.com/os/site-cdn/edba8a7f-b2f1-43a9-b054-dc11741642a4/site-cdn/2.0.3/common.js"></script>
+
+</body>
+</html>
