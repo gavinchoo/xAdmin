@@ -2,79 +2,11 @@ var {handleResponse, OperateType} = require('../../../common/http/hander.respons
 var DBHelper = require('../../../common/util/dbhelper')
 var ProjectDb = require('../../db/index').Project
 var TableDb = require('../../db/index').Table
-
+var {CategoryModel} = require('../../constant')
+var {formatType} = require('../../util')
 var processApi = require('../../lib/api')
 var processUi = require('../../lib/ui')
 var processDb = require('../../lib/db')
-
-
-const CategoryModel = {
-    table: {
-        title: "分类",
-        dataIndex: "category",
-        addNew: {title: "新增", isMenu: false}
-    },
-    group: {title: "分类管理", dataIndex: "category"},
-    columns: [
-        {
-            title: '枚举名称',
-            dataIndex: 'dataIndex',
-            key: 'dataIndex',
-            type: String,
-            required: true,
-        },
-        {
-            title: '枚举别名',
-            dataIndex: 'title',
-            key: 'title',
-            type: String,
-            required: true,
-        },
-        {
-            title: '枚举项',
-            dataIndex: 'subitems',
-            key: 'subitems',
-            type: Array,
-            listshow: false,
-            required: false,
-            f7: {
-                "columns": [
-                    {
-                        "title": "枚举名称",
-                        "dataIndex": "dataIndex",
-                        "key": "dataIndex",
-                        type: String,
-                        "required": true,
-                        "width": 60
-                    },
-                    {
-                        "title": "枚举别名",
-                        "dataIndex": "title",
-                        "key": "title",
-                        type: String,
-                        "required": true,
-                        "width": 60
-                    },
-                    {"title": "枚举值", "dataIndex": "value", "key": "value", type: String, "required": true, "width": 60},
-                ]
-            },
-        },
-    ]
-}
-
-function formatType(type) {
-    if (type == "String") {
-        return String;
-    } else if (type == "Number") {
-        return Number;
-    } else if (type == "Boolean") {
-        return Boolean;
-    } else if (type == "Object") {
-        return Object;
-    } else if (type == "Array") {
-        return Array;
-    }
-}
 
 module.exports = {
     init: function (app, auth, apigroup) {
@@ -145,9 +77,21 @@ module.exports = {
                         }
                         tempItem["f7"] = f7;
                     } else if (columnItem.source.value == "attachment") {
-
+                        var f7 = {
+                            source: "attachment",
+                            table: "file",
+                            group: "file",
+                            upload: "/api/common/file/upload",
+                            download: "/api/common/file/download",
+                            remove: "/api/common/file/remove"
+                        }
+                        tempItem["f7"] = f7;
                     } else if (columnItem.source.value == "entity") {
-
+                        var f7 = {
+                            source: "entity",
+                            columns: []
+                        }
+                        tempItem["f7"] = f7;
                     }
 
                     return tempItem;

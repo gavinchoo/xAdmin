@@ -1,6 +1,21 @@
 var fs = require('fs')
 var path = require('path')
 
+
+function formatType(type) {
+    if (type == "String") {
+        return String;
+    } else if (type == "Number") {
+        return Number;
+    } else if (type == "Boolean") {
+        return Boolean;
+    } else if (type == "Object") {
+        return Object;
+    } else if (type == "Array") {
+        return Array;
+    }
+}
+
 function firstToUpperCase(str) {
     str = str.toLowerCase();
     var reg = /\b(\w)|\s(\w)/g; //  \b判断边界\s判断空格
@@ -37,23 +52,22 @@ function mkdirsSync(dirpath, mode) {
 }
 
 //同步删除指定目录下的所前目录和文件,包括当前目录
-function rmdirsSync (targetPath) {
-    try{
+function rmdirsSync(targetPath) {
+    try {
         let files = [];
-        if( fs.existsSync(targetPath) ) {
+        if (fs.existsSync(targetPath)) {
             files = fs.readdirSync(targetPath);
-            files.forEach(function(file,index){
+            files.forEach(function (file, index) {
                 let curPath = targetPath + "/" + file;
-                if(fs.statSync(curPath).isDirectory()) { // recurse
-                    if(!rmdirsSync(curPath)) return false;
+                if (fs.statSync(curPath).isDirectory()) { // recurse
+                    if (!rmdirsSync(curPath)) return false;
                 } else { // delete file
                     fs.unlinkSync(curPath);
                 }
             });
             fs.rmdirSync(targetPath);
         }
-    }catch(e)
-    {
+    } catch (e) {
         log.error("remove director fail! path=" + targetPath + " errorMsg:" + e);
         return false;
     }
@@ -63,5 +77,6 @@ function rmdirsSync (targetPath) {
 module.exports = {
     mkdirsSync: mkdirsSync,
     rmdirsSync: rmdirsSync,
-    firstToUpperCase: firstToUpperCase
+    firstToUpperCase: firstToUpperCase,
+    formatType: formatType
 }

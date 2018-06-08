@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs')
+var path = require('path')
 var config = require('../generator/config')
 var passport = require('../framework/config/passport.config');
 var authenticator = passport.authenticate('bearer', {session: false})
@@ -67,7 +68,8 @@ const routePaths = [
 const modelPaths = [
     {
         fsPath: './' + config.dbpath + "/",
-        requirePath: '../../' + config.dbpath.substring(0, config.dbpath.lastIndexOf("/") + 1) + 'index'
+        requirePath: path.relative(__dirname.replace(process.cwd(), ""),
+          "/" + config.dbpath.substring(0, config.dbpath.lastIndexOf("/") + 1) + 'index')
     },
 ]
 

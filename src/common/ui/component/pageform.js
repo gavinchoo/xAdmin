@@ -159,7 +159,7 @@ class PageForm extends React.Component {
                 }
 
                 if (this.state.fileList && this.state.fileList.length > 0) {
-                    var files;
+                    var files = [];
                     if (this.props.dataSource) {
                         files = this.props.dataSource[this.state.fileFiled];
                     }
@@ -181,6 +181,8 @@ class PageForm extends React.Component {
                         }
                     })
                     values[this.state.fileFiled] = files;
+                }else if (this.state.fileFiled) {
+                    values[this.state.fileFiled] = [];
                 }
                 console.log('Received values of form: ', values);
                 if (this.props.onSubmit) {

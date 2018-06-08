@@ -43,7 +43,7 @@ function createColumnsContent(columns) {
                 columnType = util.firstToUpperCase(columnItem.f7.table) + postfix;
             } else if (columnItem.type == Array) {
                 columnType = "[" + util.firstToUpperCase(columnItem.f7.table) + postfix + "]";
-            }else {
+            } else {
                 columnType = columnItem.type.name;
             }
         } else {
@@ -71,16 +71,22 @@ function createImportContent(mapItem) {
         if (isColumnSearch(columnItem) || (isColumnEntity(columnItem) && columnItem.f7.table)) {
             // 外部对象类型
             if (columnItem.type == Object || columnItem.type == Array) {
-                var path = ""
+                var importPath = ""
+                // 同级业务分组
                 if (mapItem.group.dataIndex == columnItem.f7.group) {
-                    path = "./" + columnItem.f7.table;
+                    importPath = "./" + columnItem.f7.table;
                 } else {
-                    path = "../" + columnItem.f7.group + "/" + columnItem.f7.table;
+                    if (columnItem.f7.source == "attachment") {
+                        importPath = path.relative("/" + config.dbpath + "/" + mapItem.group, '/server/framework/db/mongo/schema/file/file');
+                        importPath = importPath.replace(/\\/g, "/");
+                    } else {
+                        importPath = "../" + columnItem.f7.group + "/" + columnItem.f7.table;
+                    }
                 }
                 var model = util.firstToUpperCase(columnItem.f7.table);
                 var importChild = importTemplate
                   .replace(/{@model}/g, model)
-                  .replace(/{@path}/g, path)
+                  .replace(/{@path}/g, importPath)
                 importContent = importContent + importChild + "\n";
             }
         }

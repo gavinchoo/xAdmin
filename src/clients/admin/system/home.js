@@ -5,12 +5,8 @@ import {Link, Route} from 'react-router-dom'
 const {Header, Content, Footer, Sider} = Layout;
 const SubMenu = Menu.SubMenu;
 import '../../../common/ui/styles/home.css'
-import {menuconfig} from '../config'
 import {baseroute} from './menu'
-
 import {route} from '../business/menu'
-
-console.log("route", route)
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -74,11 +70,12 @@ export default class Home extends React.Component {
     }
 
     createMenu() {
+        var allRoute = Object.assign(route, baseroute);
         var breadcrumbNameMap = {}
         var submenus = []
         var routers = []
-        for (var key in route) {
-            var menuItem = route[key]
+        for (var key in allRoute) {
+            var menuItem = allRoute[key]
             breadcrumbNameMap[menuItem.path] = menuItem.title
             var subMenuItems = []
             menuItem.child.map((subMenuItem) => {
