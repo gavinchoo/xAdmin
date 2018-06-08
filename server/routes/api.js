@@ -1,12 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs')
-
+var config = require('../generator/config')
 var passport = require('../framework/config/passport.config');
 var authenticator = passport.authenticate('bearer', {session: false})
-
-var FS_PATH__MODEL = './server/db/mongo1/schema/';
-var REQUIRE_PATH_MODEL = '../../server/db/mongo1/index';
 
 router.options('*', function (req, res, next) {
     next();
@@ -62,12 +59,21 @@ function firstToUpperCase(str) {
 }
 
 const routePaths = [
-    {fsPath: './server/routes/restful/', requirePath: './restful/'},
+    {fsPath: './server/business/restful/', requirePath: '../business/restful/'},
     {fsPath: './server/generator/restful/', requirePath: '../generator/restful/'},
     {fsPath: './server/framework/restful/', requirePath: '../framework/restful/'}
 ]
 
-initModels(FS_PATH__MODEL, REQUIRE_PATH_MODEL, "");
+const modelPaths = [
+    {
+        fsPath: './' + config.dbpath + "/",
+        requirePath: '../../' + config.dbpath.substring(0, config.dbpath.lastIndexOf("/") + 1) + 'index'
+    },
+]
+
+modelPaths.forEach((item) => {
+    initModels(item.fsPath, item.requirePath, "");
+})
 
 routePaths.forEach((item) => {
     initRouters(item.fsPath, item.requirePath, "");

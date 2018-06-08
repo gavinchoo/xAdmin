@@ -1,6 +1,8 @@
-var {handleResponse, OperateType} = require('../../../common/http/hander.response')
-var DBHelper = require('../../../common/util/dbhelper')
-var BaseController = require('../../base')
+var path = require('path')
+var fromPath = __dirname.replace(process.cwd(), "")
+var {handleResponse, OperateType} = require(path.relative(fromPath, '/server/common/http/hander.response'))
+var DBHelper = require(path.relative(fromPath, '/server/common/util/dbhelper'))
+var BaseController = require(path.relative(fromPath, "/server/routes/base"))
 
 module.exports = {
     init: function (app, auth, apigroup) {

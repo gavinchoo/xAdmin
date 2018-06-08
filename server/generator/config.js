@@ -1,9 +1,9 @@
 const config = {
     uipath: "src/clients/admin/",
     uiname: "business/",
-    apipath: "/server/routes/restful/",
-    dbpath: "server/db/mongo1/schema",
+    apipath: "/server/business/restful/",
     apiversion: "v1",
+    dbpath: "server/business/db/mongo/schema",
     dbconfig: {db: "mongodb://localhost:27017/mall_jzb"}
 }
 

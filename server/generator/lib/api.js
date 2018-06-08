@@ -26,7 +26,7 @@ function processApi(map) {
             // 创建文件目录
             var fileRootPath = path.join("./", PATH_API);
             if (!fs.existsSync(fileRootPath)) {
-                fs.mkdirSync(fileRootPath);
+                util.mkdirsSync(fileRootPath);
             }
 
             var fileFullPath = path.join("./", PATH_API + "/" + subPath + postfix);
